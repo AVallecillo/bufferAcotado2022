@@ -10,7 +10,6 @@ import java.util.Queue;
 public class BufferAcotado<T> {
 	
 	private int capacidad;
-	private Queue<T> elements;
 
 	/**
 	 * CONSTRUCTOR
@@ -18,9 +17,6 @@ public class BufferAcotado<T> {
 	 * @throws IllegalArgumentException if (!capacidad<=0) // precondition
 	 */
 	public BufferAcotado(int capacidad) {
-		if(capacidad<=0) throw new IllegalArgumentException("La capacidad del buffer tiene que ser >0");
-		this.capacidad = capacidad;
-		elements=new ArrayDeque<T>();
 	}
 	
 	/**
@@ -32,9 +28,6 @@ public class BufferAcotado<T> {
 	 * @post   the new element becomes the last element of the buffer
 	 */
 	public void put(T element) {
-		if (this.isFull()) throw new IllegalStateException("The element cannot be added at this time because the buffer is full");
-		boolean addedOK=elements.add(element);
-		assert addedOK:"No pudo insertarse el elemento";
 	}
 	
 	/**
@@ -45,8 +38,7 @@ public class BufferAcotado<T> {
 	 * @post   buffer@pre = buffer.prepend(result) 
 	 */
 	public T get() {
-		if (this.isEmpty()) throw new IllegalStateException("The element cannot be obtained because the Buffer is empty");
-		return elements.remove();
+		return null;
 	}
 	
 	/**
@@ -54,7 +46,7 @@ public class BufferAcotado<T> {
 	 * @return :int -- elements.size()
 	 */
 	public int size() {
-		return this.elements.size();
+		return 0;
 	}
 	
 	/**
@@ -62,7 +54,7 @@ public class BufferAcotado<T> {
 	 * @return :boolean -- elements.size()==capacidad
 	 */
 	public boolean isFull() {
-		return this.elements.size()==this.capacidad;
+		return true;
 	}
 	
 	/**
@@ -70,6 +62,6 @@ public class BufferAcotado<T> {
 	 * @return :boolean -- elements.size()==0
 	 */
 	public boolean isEmpty() {
-		return this.elements.size()==0;
+		return false;
 	}
 }
