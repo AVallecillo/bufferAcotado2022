@@ -1,6 +1,3 @@
-import java.util.ArrayDeque;
-import java.util.Queue;
-
 /**
  * Clase que implementa un buffer acotado
  * @author Antonio Vallecillo
