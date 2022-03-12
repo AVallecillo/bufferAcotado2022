@@ -3,7 +3,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+/**
+ * Implementacion de test para la clase BufferAcotado
+ * @author FlorinUMA
+ *
+ */
 class TestBufferAcotado_FlorinUMA {
 	private BufferAcotado<Integer> buffer;
 
@@ -15,6 +19,7 @@ class TestBufferAcotado_FlorinUMA {
 
 	@Test
 	void pruebaCrearObjeto() {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> new BufferAcotado<>(0));
 		Assertions.assertThrows(IllegalArgumentException.class, () -> new BufferAcotado<>(-0));
 		Assertions.assertThrows(IllegalArgumentException.class, () -> new BufferAcotado<>(-1));
 		Assertions.assertThrows(IllegalArgumentException.class, () -> new BufferAcotado<>(-20));
@@ -33,10 +38,12 @@ class TestBufferAcotado_FlorinUMA {
 
 	@Test
 	void pruebaGet() {
-		Assertions.assertThrows(IllegalStateException.class, () -> buffer.get());
+		Assertions.assertThrows(IllegalStateException.class, () -> buffer.get()); //Probamos que un buffer vacio genera una excepcion al hacerle un get
+		// Rellenamos el buffer
 		for (int i = 0; i < 10; i++) {
 			buffer.put(i);
 		}
+		//Comprobamos que se extraen los numeros de manera correcta
 		Assertions.assertEquals(0, buffer.get());
 		Assertions.assertEquals(1, buffer.get());
 		Assertions.assertEquals(2, buffer.get());
@@ -47,6 +54,7 @@ class TestBufferAcotado_FlorinUMA {
 		Assertions.assertEquals(7, buffer.get());
 		Assertions.assertEquals(8, buffer.get());
 		Assertions.assertEquals(9, buffer.get());
+		Assertions.assertThrows(IllegalStateException.class, () -> buffer.get()); //Probamos que un buffer vacio genera una excepcion al hacerle un get
 	}
 
 	@Test
@@ -56,8 +64,8 @@ class TestBufferAcotado_FlorinUMA {
 			buffer.put(i);
 		}
 		Assertions.assertEquals(10, buffer.size());
-		buffer.get();
-		Assertions.assertEquals(9, buffer.size());
+		buffer.get(); //Reducimos el tamanyo del buffer
+		Assertions.assertEquals(9, buffer.size()); //Comprobamos que se ha reducido correctamente
 	}
 
 	@Test
