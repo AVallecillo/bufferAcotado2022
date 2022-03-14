@@ -1,3 +1,6 @@
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 /**
  * Clase que implementa un buffer acotado
  * @author Claudia Vega Rodriguez
@@ -6,17 +9,19 @@
 public class BufferAcotado_ClaudiaVegaRodriguez<T> {
 	
 	private int capacidad;
+	private Queue<T> elements;
 
 	/**
 	 * CONSTRUCTOR
 	 * @param capacidad :int capacidad del buffer (numero maximo de elementos que puede contener)
 	 * @throws IllegalArgumentException if (!capacidad<=0) // precondition
 	 */
-	public BufferAcotado(int capacidad) {
+	public BufferAcotado_ClaudiaVegaRodriguez(int capacidad) {
 		capacidad = this.capacidad;
 		if (capacidad <= 0) {
-			throw new IllegalArgumentException("ERROR. Ese dato no es posible.")
+			throw new IllegalArgumentException("ERROR. Ese dato no es posible.");
 		}
+		elements=new ArrayDeque<T>();
 	}
 	
 	
@@ -29,9 +34,13 @@ public class BufferAcotado_ClaudiaVegaRodriguez<T> {
 	 * @post   the new element becomes the last element of the buffer
 	 */
 	public void put(T element) {
-		if () {
-			throw new IllegalStateException("Error. The Buffer is full.");
+		if (element == null) {
+			throw new NullPointerException("Error. The Buffer is null.");
 		}
+		if (elements.size() == capacidad) {
+			throw new IllegalStateException("Error. The Buffer is full. You cant put anything else.");
+		}
+		elements.add(element);
 	}
 	
 	/**
@@ -42,7 +51,11 @@ public class BufferAcotado_ClaudiaVegaRodriguez<T> {
 	 * @post   buffer@pre = buffer.prepend(result) 
 	 */
 	public T get() {
-		return null;
+		if(elements.size() == 0 ) {
+			throw new IllegalStateException("Error. You cant get anything from a empty buffer");
+		}
+		
+		return elements.remove();
 	}
 	
 	/**
@@ -50,7 +63,6 @@ public class BufferAcotado_ClaudiaVegaRodriguez<T> {
 	 * @return :int -- elements.size()
 	 */
 	public int size() {
-		int elements = 0;
 		return elements.size();
 	}
 	
@@ -59,8 +71,6 @@ public class BufferAcotado_ClaudiaVegaRodriguez<T> {
 	 * @return :boolean -- elements.size()==capacidad
 	 */
 	public boolean isFull() {
-		boolean elements = false;
-
 		if (elements.size() == capacidad) {
 			return true;
 		}
@@ -72,10 +82,8 @@ public class BufferAcotado_ClaudiaVegaRodriguez<T> {
 	 * @return :boolean -- elements.size()==0
 	 */
 	public boolean isEmpty() {
-		boolean elements = false;
-		
 		if (elements.size()== 0) {
-			return true
+			return true;
 		}
 		return false;
 	}
