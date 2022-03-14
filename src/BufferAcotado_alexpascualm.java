@@ -1,7 +1,7 @@
 
 
 /**
- * Clase que implementa un buffer acotado.
+ * Clase que implementa un buffer acotado
  * @author Alejandro Pascual
  * @version 1.0
  *
