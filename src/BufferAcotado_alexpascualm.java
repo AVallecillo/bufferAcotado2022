@@ -39,7 +39,7 @@ public class BufferAcotado_alexpascualm<T> {
 	 * @throws IllegalArgumentException if (!capacidad<=0) // precondition
 	 */
 	public BufferAcotado_alexpascualm(int cap) {
-		if(!(capacidad<=0)) {
+		if(!(cap<=0)) {
 			capacidad=cap;
 			cantidad=0;
 		}else {
